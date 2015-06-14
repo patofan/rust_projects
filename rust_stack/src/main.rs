@@ -12,7 +12,7 @@ impl <E> Stack<E> {
 	}
 	
 	fn pop(&mut self ) -> Option<E> {
-		return self.vec.pop();
+	    return self.vec.pop();
 	}
 	
     fn peek(&self) -> Option<&E> {
