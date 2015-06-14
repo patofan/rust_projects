@@ -30,6 +30,17 @@ fn main() {
 	s.push(1);
 	s.push(2);
 	s.push(3);
+	
+	{
+	let t = s.peek();
+	match t {
+		Some(  ref x ) => println!( "peek={}" ,  x ) ,
+		_ => {}
+	}
+	
+	}
+	
+	
 	while ! s.is_empty() {
 		let e = s.pop();
 		match e {
