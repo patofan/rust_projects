@@ -29,7 +29,7 @@ fn main() {
 	let mut s = Stack::new();
 	s.push(1);
 	s.push(2);
-	s.push(3);
+	s.push(3); 
 	
 	{
 	let t = s.peek();
