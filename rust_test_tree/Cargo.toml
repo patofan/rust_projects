@@ -1,0 +1,9 @@
+[package]
+
+name = "treenode"
+version = "0.0.1"
+authors = [ "patofan@gmail.com" ]
+
+[[bin]]
+
+name = "treenode"
