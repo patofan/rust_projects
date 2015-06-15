@@ -10,7 +10,7 @@ pub struct RecordHolderImpl<T> {
 }
 
 
-impl<T> RecordHolder<T> for RecordHolderImpl<T> {
+impl <T> RecordHolderImpl<T> {
 	
     /**
      * Get status flag
@@ -95,48 +95,48 @@ impl<T> RecordHolder<T> for RecordHolderImpl<T> {
 	 }
 	 
 	 
-	/**
-	 * Get proxy object of entity
-	 * @return entity
-	 */
-	fn get_entity(self) -> T{
-	   //self.	
-	}
-	
-	
-	/**
-	 * build proxy object of entity
-	 */
-	fn set_entity(&mut self ,rawRecord : T ){
-	}
-	
-
-	
-	fn  get_old_entity(self ) -> T{
-		
-	}
-
-	fn  set_old_entity(&mut self ,oldEntity : T ){
-		
-	}
-	
-	
-	/**
-	 * Get entity , it's a none proxy object
-	 * @return entity
-	 */
-	fn  get_unwrap(self ) -> T{
-		
-	}
-	
-	/**
-	 * Set entity , it's a none proxy object
-	 *@param entity entity
-	 */
-	fn set_unwrap( &mut self ,entity : T ){
-		
-	}
-	 	
+//	/**
+//	 * Get proxy object of entity
+//	 * @return entity
+//	 */
+//	fn get_entity(self) -> T{
+//	   //self.	
+//	}
+//	
+//	
+//	/**
+//	 * build proxy object of entity
+//	 */
+//	fn set_entity(&mut self ,rawRecord : T ){
+//	}
+//	
+//
+//	
+//	fn  get_old_entity(self ) -> T{
+//		
+//	}
+//
+//	fn  set_old_entity(&mut self ,oldEntity : T ){
+//		
+//	}
+//	
+//	
+//	/**
+//	 * Get entity , it's a none proxy object
+//	 * @return entity
+//	 */
+//	fn  get_unwrap(self ) -> T{
+//		
+//	}
+//	
+//	/**
+//	 * Set entity , it's a none proxy object
+//	 *@param entity entity
+//	 */
+//	fn set_unwrap( &mut self ,entity : T ){
+//		
+//	}
+//	 	
 }	
    
  
