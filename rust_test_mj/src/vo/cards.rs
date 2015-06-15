@@ -329,7 +329,7 @@ impl Cards {
 
 	pub fn removeAllFlowerCards() -> Cards  {
 		let mut cards = Cards::new();
-		let mut iter = this.allCards.iter();
+		//let mut iter = this.allCards.iter();
 		
 		
 		
@@ -343,7 +343,7 @@ impl Cards {
 //				cards.addCard(card);
 //			}
 //		}
-//		return cards;
+		return cards;
 	}
    
 
