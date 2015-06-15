@@ -230,6 +230,18 @@ impl Cards {
 		}
 		return found;
 	}
+	
+	pub fn findCardVec(&self , testCards : &Vec<Card>  ) -> bool {
+		let mut found = false;
+		for  testCard in testCards {
+			found = self.containCard(testCard);
+			if !found {
+				break;
+			}	
+		}
+		return found;
+	}
+	
 
 	pub fn  findTwoSameCards(&self , startIndex : usize , firstCard  : &Card ) -> TwoIndexVO {
 		// check same 3 card

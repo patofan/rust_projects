@@ -1,5 +1,7 @@
 
 use config::configure;
+use vo::cards::Cards;
+use vo::card::Card;
 
 
 pub struct CardUtility;
@@ -12,24 +14,24 @@ pub struct CardUtility;
 //花牌 梅、蘭、竹、菊及春、夏、秋、冬八 : 41 ~ 48   ,各一張。
 impl CardUtility {
 
-//	fn makAllDollarCards( result : &Cards  ){
-//		for  num in 1..10 {
-//			result.addCard( CardUtility.makeDollarCard( num )  );
-//		}
-//	}
-//	
-//	fn makAllLineCards( result : &Cards ){
-//		for  num in 1..10 {
-//			result.addCard( CardUtility.makeLineCard( num )  );
-//		}
-//	}
-//	
-//	fn makAllCircleCards( result : &Cards ){
-//		for  num in 1..10 {
-//			result.addCard( CardUtility.makeCircleCard( num )  );
-//		}
-//	}
-//	
+	pub fn makAllDollarCards( result : &mut Cards  ){
+		for  num in 1..10 {
+			result.addCard( CardUtility::makeDollarCard( num )  );
+		}
+	}
+	
+	pub fn makAllLineCards( result : &mut Cards ){
+		for  num in 1..10 {
+			result.addCard( CardUtility::makeLineCard( num )  );
+		}
+	}
+	
+	pub fn makAllCircleCards( result : &mut Cards ){
+		for  num in 1..10 {
+			result.addCard( CardUtility::makeCircleCard( num )  );
+		}
+	}
+	
 //	
 //	fn makeEastCard() -> Card {
 //		Card::new(  LETTER_EAST  );
@@ -59,24 +61,27 @@ impl CardUtility {
 //		return new Card( CardConfigure.LETTER_WHITE  );
 //	}
 //	
-//	fn Card makeDollarCard( byte dollarNum )-> Card{
-//		if( dollarNum > 9 )
-//			throw new RuntimeException( "Make line card must be <= 9");
-//		return new Card( dollarNum  );
-//	}
-//	
-//	
-//	fn Card makeLineCard( byte lineNum )-> Card{
-//		if( lineNum > 9 )
-//			throw new RuntimeException( "Make line card must be <= 9");
-//		return new Card( (byte) ( 10 +   lineNum )  );
-//	}
-//	
-//	fn Card makeCircleCard( byte circleNum )-> Card{
-//		if( circleNum > 9 )
-//			throw new RuntimeException( "Make circle card must be <= 9");
-//		return new Card( (byte) ( 20 +   circleNum )  );
-//	}
+	pub fn  makeDollarCard( dollarNum : u8 )-> Card{
+		if( dollarNum > 9 ){
+			panic!( "Make line card must be <= 9");
+		}	
+		return Card::new( dollarNum  );
+	}
+	
+	
+	pub fn  makeLineCard(  lineNum: u8 )-> Card{
+		if( lineNum > 9 ) {
+			panic!( "Make line card must be <= 9");
+		}	
+		return Card::new(  10 +   lineNum  );
+	}
+	
+	pub fn  makeCircleCard( circleNum: u8 )-> Card{
+		if( circleNum > 9 ) {
+			panic!( "Make circle card must be <= 9");
+		}	
+		return Card::new( 20 +   circleNum );
+	}
 //	
 //
 //	/**
