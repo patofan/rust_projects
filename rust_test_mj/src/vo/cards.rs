@@ -61,13 +61,12 @@ impl Cards {
 		}
 		return None;
 	}
-	
 
 	pub fn getCard(&self , index : usize ) -> Option<&Card> {
 		if index < self.size() {
-		  Some( &self.allCards[ index ] )
-		else
-		  None  
+		  return Some( &self.allCards[ index ] )
+		} 
+	    return None;  
 	}
 	
 	pub fn  size(&self) -> usize {
@@ -247,9 +246,11 @@ impl Cards {
 						result.index1 = index1;
 						result.index2 = index2;
 					}
+					None => {}
 				}
 				
 			} 
+			None => {}
 		}
 		return result;
 	}
@@ -258,7 +259,7 @@ impl Cards {
 
         let cards =  self.getAllCards();
         for index in 0..cards.len() {
-        	let card = cards[index];
+        	let card = &( cards[index]);
 			if (! card.isMark() && card.getCardNum() == firstCard.getCardNum() ){
 				return Some(index);
 			}	
@@ -274,18 +275,19 @@ impl Cards {
 				self.allCards.remove( indexval );
 				return true;
 			}
+			None => {}
 		}
 	    return false;
 	}
 
-	pub fn removeCardByIndex(&mut self , index : usize )-> &Card  {
-		return &( self.allCards.remove(index));
+	pub fn removeCardByIndex(&mut self , index : usize )-> Card  {
+		return self.allCards.remove(index);
 	}
 	
 	
 	pub fn index( &self , card : &Card ) -> Option<usize> {
 		for index in 0..self.allCards.len() {
-			let c = self.allCards[index];
+			let c = &(self.allCards[index]);
 			if c.getCardNum() == card.getCardNum() {
 				return Some( index );
 			}
@@ -298,17 +300,19 @@ impl Cards {
 		let matchIndex1 = self.findNextSequenceCard(startIndex, firstCard);
 		match matchIndex1 {
 			Some( index1 ) => {
-				let secondCard = self.getCard(index1);
-				let matchIndex2 = self.findNextSequenceCard( index1 + 1 , secondCard);
+				let secondCard = self.getCard(index1).unwrap();
+				let matchIndex2 = self.findNextSequenceCard( index1 + 1 , &secondCard);
 				match matchIndex2 {
 					Some( index2 ) => {
-						result.found = true;
+						result.found = true; 
 						result.index1 = index1;
 						result.index2 = index2;
 					}
+					None => {}
 				}
 				
-			} 
+			}
+			None => {} 
 		}
 		return result;
 	}
@@ -318,7 +322,7 @@ impl Cards {
 		let  firstCardNum = firstCard.getCardNum();
 		if ( firstCard.isSequenceCard() ) {
 			for index in startIndex..self.allCards.len()  {
-				let card = self.getCard(index);
+				let card = self.getCard(index).unwrap();
 				if ( card.isSequenceCard() && ! card.isMark() && (card.getCardNum() == firstCardNum + 1)) {
 					return Some(index);
 				}	
@@ -326,26 +330,37 @@ impl Cards {
 		}
 		return None;
 	}
+	
 
-	pub fn removeAllFlowerCards() -> Cards  {
-		let mut cards = Cards::new();
-		//let mut iter = this.allCards.iter();
-		
-		
-		
-//		Iterator<Card> iter = this.allCards.iterator();
-//		card : Card;
+//	fn indexCard( v : & Vec<Card> , card : &Card ) -> Option<usize> {
 //		
-//		while (iter.hasNext()) {
-//			card = iter.next();
-//			if (CardUtility.isFlowerCard(card)) {
-//				iter.remove();
-//				cards.addCard(card);
+//		for index in 0..v.len() {
+//			let c = & (v[index]);
+//			if c.getCardNum() == card.getCardNum() {
+//				return Some( index );
 //			}
 //		}
-		return cards;
+//		return None;
+//	}
+	
+
+	pub fn removeAllFlowerCards( &mut self) -> Cards  {
+		let mut idexes = vec![];
+		for index in 0..self.allCards.len() {
+			let c = &(self.allCards[index]);
+			if c.isFlowerCard() {
+				idexes.push( index );
+			}
+		}
+
+        let mut result = Cards::new();        	
+        for removeIdex in idexes {
+        	let removeCard = self.removeCardByIndex( removeIdex );
+        	result.addCard( removeCard );
+        }
+		return result;
 	}
-   
-
-
+	
 }
+
+

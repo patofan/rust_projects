@@ -15,7 +15,7 @@ impl Card {
 	pub fn new(cardNum : u8 ) -> Card {
 		Card{ cardNum : cardNum , mark : false , state : 6 }
 	}
-	
+	 
 	pub fn isMark(&self) -> bool {
 		self.mark
 	}
