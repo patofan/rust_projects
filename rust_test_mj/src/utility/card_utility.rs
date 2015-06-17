@@ -14,21 +14,21 @@ pub struct CardUtility;
 //花牌 梅、蘭、竹、菊及春、夏、秋、冬八 : 41 ~ 48   ,各一張。
 impl CardUtility {
 
-	pub fn makAllDollarCards( result : &mut Cards  ){
+	pub fn make_all_dollar_cards( result : &mut Cards  ){
 		for  num in 1..10 {
-			result.addCard( CardUtility::makeDollarCard( num )  );
+			result.add_card( CardUtility::make_dollar_card( num )  );
 		}
 	}
 	
-	pub fn makAllLineCards( result : &mut Cards ){
+	pub fn make_all_line_cards( result : &mut Cards ){
 		for  num in 1..10 {
-			result.addCard( CardUtility::makeLineCard( num )  );
+			result.add_card( CardUtility::make_line_card( num )  );
 		}
 	}
 	
-	pub fn makAllCircleCards( result : &mut Cards ){
+	pub fn make_all_circle_cards( result : &mut Cards ){
 		for  num in 1..10 {
-			result.addCard( CardUtility::makeCircleCard( num )  );
+			result.add_card( CardUtility::make_circle_card( num )  );
 		}
 	}
 	
@@ -61,7 +61,7 @@ impl CardUtility {
 //		return new Card( CardConfigure.LETTER_WHITE  );
 //	}
 //	
-	pub fn  makeDollarCard( dollarNum : u8 )-> Card{
+	pub fn  make_dollar_card( dollarNum : u8 )-> Card{
 		if( dollarNum > 9 ){
 			panic!( "Make line card must be <= 9");
 		}	
@@ -69,14 +69,14 @@ impl CardUtility {
 	}
 	
 	
-	pub fn  makeLineCard(  lineNum: u8 )-> Card{
+	pub fn  make_line_card(  lineNum: u8 )-> Card{
 		if( lineNum > 9 ) {
 			panic!( "Make line card must be <= 9");
 		}	
 		return Card::new(  10 +   lineNum  );
 	}
 	
-	pub fn  makeCircleCard( circleNum: u8 )-> Card{
+	pub fn  make_circle_card( circleNum: u8 )-> Card{
 		if( circleNum > 9 ) {
 			panic!( "Make circle card must be <= 9");
 		}	

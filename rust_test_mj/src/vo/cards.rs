@@ -19,42 +19,42 @@ impl Cards {
    	  Cards{  kind : 0 , allCards : vec![] }
    }
    
-   pub fn getAllCards(&self) -> & Vec<Card> {
+   pub fn get_allCards(&self) -> & Vec<Card> {
    	  & (self.allCards )
    }
 
-	pub fn  clearMark( &mut self) {
+	pub fn  clear_mark( &mut self) {
 		for c in &mut self.allCards {
-			c.setMark( false) ;
+			c.set_mark( false) ;
 		} 
 	}
 
-	pub fn  addCardNum(&mut self , cardNum : u8 ) {
+	pub fn  add_card_num(&mut self , cardNum : u8 ) {
 		let card = Card::new(cardNum);
 		self.allCards.push( card);
 	}
 	
 
-	pub fn  addCard(&mut self , card : Card) {
+	pub fn  add_card(&mut self , card : Card) {
 		self.allCards.push( card );
 	}
 
-	pub fn  addCards(&mut self , cards : &Cards) {
-		for c in cards.getAllCards() {
-		   self.addCardNum( c.getCardNum() );
+	pub fn  add_cards(&mut self , cards : &Cards) {
+		for c in cards.get_all_cards() {
+		   self.add_card_num( c.get_card_num() );
 		}
 	}
 
-//	// pub fn List<Card> getAllCards() {
-//	// return allCards;
-//	// }
-//
+	 pub fn get_all_cards(&self) ->  &Vec<Card> {
+	     return & self.allCards;
+	 }
 
-	pub fn indexOf(&self , card : &Card) -> Option<usize> {
-		let num = card.getCardNum();
+
+	pub fn index_of(&self , card : &Card) -> Option<usize> {
+		let num = card.get_card_num();
 		let mut index = 0usize;
 		for c in & self.allCards {
-			if c.getCardNum() == num {
+			if c.get_card_num() == num {
 				return Some( index );
 			} 
 			index += 1;
@@ -62,7 +62,7 @@ impl Cards {
 		return None;
 	}
 
-	pub fn getCard(&self , index : usize ) -> Option<&Card> {
+	pub fn get_card(&self , index : usize ) -> Option<&Card> {
 		if index < self.size() {
 		  return Some( &self.allCards[ index ] )
 		} 
@@ -76,7 +76,7 @@ impl Cards {
 //	pub fn Cards cloneAndClearMark() {
 //		Cards newCards = new Cards(this.allCards.size());
 //		for (card : Card : this.allCards) {
-//			newCards.addCard(card.getCardNum());
+//			newCards.addCard(card.get_card_num());
 //		}
 //		return newCards;
 //	}
@@ -86,21 +86,22 @@ impl Cards {
 		self.allCards.clear();
 	}
 
-	pub fn  containCard(&self , card : &Card) -> bool {
-		 self.indexOf( card ).is_some() 
+	pub fn  contain_card(&self , card : &Card) -> bool {
+		 self.index_of( card ).is_some() 
 	}
 	
 
 
 	pub fn  sort(&mut self) {
+		//(& (self.allCards) ).sort();
 	}
 
-	pub fn toString(&self) -> String  {
+	pub fn to_string(&self) -> String  {
 		let mut buf = String::new();
 		
 		let mut index = 0;
 		for card in &( self.allCards)  {
-			buf.push_str(& format!("{}.{} ", index , card.getCardNum() ));
+			buf.push_str(& format!("{}.{} ", index , card.get_card_num() ));
 			index += 1;
 		}
 		return buf;
@@ -124,20 +125,20 @@ impl Cards {
 //	// return newCards;
 //	// }
 
-	pub fn  markPairCards(&mut self , pairCard : &Card) {
+	pub fn  mark_pair_cards(&mut self , pairCard : &Card) {
 		let mut cnt = 2;
-		let pairNum = pairCard.getCardNum();
+		let pairNum = pairCard.get_card_num();
 		
 		for index in 0..self.allCards.len() {
 			
 			let  mut found =  false ;
 			{
 				let card : &Card = &( self.allCards[index]);
-			    found = ( card.getCardNum() == pairNum && ! card.isMark() && cnt > 0);
+			    found = ( card.get_card_num() == pairNum && ! card.is_mark() && cnt > 0);
 			}
 			if found  {
 				let card = &mut self.allCards[index];
-				card.setMark( false) ;
+				card.set_mark( false) ;
 				cnt -= 1;
 			}
 		}
@@ -145,13 +146,13 @@ impl Cards {
 	}
 	
 
-	pub fn findAllMatchCards(&self , matchCards : &Cards ) -> bool{
+	pub fn find_all_match_cards(&self , matchCards : &Cards ) -> bool{
 		let mut  found = false;
 		
 		for index in 0..matchCards.allCards.len() {
-			let card =& ( matchCards.getAllCards()[index]);
+			let card =& ( matchCards.get_all_cards()[index]);
 			
-			found = self.containCard( card);
+			found = self.contain_card( card);
 			if ! found {
 				break; 
 			}
@@ -159,17 +160,17 @@ impl Cards {
 		return found;
 	}
 	
-	pub fn doGetPairCards(&self )-> Cards  {
-		return self.doGetSameCards( 2);
+	pub fn do_get_pair_cards(&self )-> Cards  {
+		return self.do_get_same_cards( 2);
 	}
 
-	pub fn doGetThreeSameCards(&self ) -> Cards  {
-		return self.doGetSameCards( 3);
+	pub fn do_get_three_same_cards(&self ) -> Cards  {
+		return self.do_get_same_cards( 3);
 	}
 
-	pub fn doGetSameCards(&self , sameCount : u8 ) ->  Cards {
+	pub fn do_get_same_cards(&self , sameCount : u8 ) ->  Cards {
 		let mut result = Cards::new();
-		let cardNums = self.getAllCards();
+		let cardNums = self.get_all_cards();
 
 		// cardNum , cnt
 		//Map<Card, Byte> cardNumToCntMap = new HashMap<Card, Byte>();
@@ -179,7 +180,7 @@ impl Cards {
 		let mut cardNum : u8;
 		let mut cnt;
 		for card in  cardNums {
-			cardNum = card.getCardNum();
+			cardNum = card.get_card_num();
 			match cardNumToCntMap.get( &cardNum ) {
 				Some( x ) => cnt = x + 1,
 				None      => cnt = 1 
@@ -189,7 +190,7 @@ impl Cards {
 
         for ( & cardNo, & cardCnt ) in cardNumToCntMap.iter() {
         	if cardCnt  >= sameCount {
-        		result.addCardNum( cardNo );
+        		result.add_card_num( cardNo );
         	}
         }
 
@@ -201,29 +202,29 @@ impl Cards {
 		return result;
 	}
 
-	pub fn  doGetSameMatchCards(&self , matchCard : &Card , sameCount : u8 ) -> Cards {
+	pub fn  do_get_same_match_cards(&self , matchCard : &Card , sameCount : u8 ) -> Cards {
 		let mut result = Cards::new();
-		let cardNums = self.getAllCards();
+		let cardNums = self.get_all_cards();
 
-		let matchCardNum = matchCard.getCardNum(); 
+		let matchCardNum = matchCard.get_card_num(); 
 		let mut cnt = 0;
 		for card in  cardNums {
-			if card.getCardNum() != matchCardNum { 
+			if card.get_card_num() != matchCardNum { 
 				continue;
 			}	
 			cnt += 1;
 		}
 
 		if cnt >= sameCount {
-			result.addCardNum( matchCardNum );
+			result.add_card_num( matchCardNum );
 		}	
 		return result;
 	}
 
-	pub fn findCards(&self , testCards : & Cards ) -> bool {
+	pub fn find_cards(&self , testCards : & Cards ) -> bool {
 		let mut found = false;
-		for  testCard in testCards.getAllCards() {
-			found = self.containCard(testCard);
+		for  testCard in testCards.get_all_cards() {
+			found = self.contain_card(&testCard);
 			if !found {
 				break;
 			}	
@@ -231,10 +232,10 @@ impl Cards {
 		return found;
 	}
 	
-	pub fn findCardVec(&self , testCards : &Vec<Card>  ) -> bool {
+	pub fn find_card_vec(&self , testCards : &Vec<Card>  ) -> bool {
 		let mut found = false;
 		for  testCard in testCards {
-			found = self.containCard(testCard);
+			found = self.contain_card(testCard);
 			if !found {
 				break;
 			}	
@@ -243,15 +244,15 @@ impl Cards {
 	}
 	
 
-	pub fn  findTwoSameCards(&self , startIndex : usize , firstCard  : &Card ) -> TwoIndexVO {
+	pub fn  find_two_same_cards(&self , startIndex : usize , firstCard  : &Card ) -> TwoIndexVO {
 		// check same 3 card
 		let mut result = TwoIndexVO::new();
 
 		// check same 3 card
-		let matchIndex1 = self.findOneSameCard(startIndex, firstCard);
+		let matchIndex1 = self.find_one_same_card(startIndex, firstCard);
 		match matchIndex1 {
 			Some( index1 ) => {
-				let matchIndex2 = self.findOneSameCard( index1 + 1 , firstCard);
+				let matchIndex2 = self.find_one_same_card( index1 + 1 , firstCard);
 				match matchIndex2 {
 					Some( index2 ) => {
 						result.found = true;
@@ -267,12 +268,12 @@ impl Cards {
 		return result;
 	}
 
-	pub fn findOneSameCard(&self ,  startIndex : usize , firstCard : &Card ) -> Option<usize> {
+	pub fn find_one_same_card(&self ,  startIndex : usize , firstCard : &Card ) -> Option<usize> {
 
-        let cards =  self.getAllCards();
+        let cards =  self.get_all_cards();
         for index in 0..cards.len() {
         	let card = &( cards[index]);
-			if (! card.isMark() && card.getCardNum() == firstCard.getCardNum() ){
+			if (! card.is_mark() && card.get_card_num() == firstCard.get_card_num() ){
 				return Some(index);
 			}	
         }
@@ -280,7 +281,7 @@ impl Cards {
 	}
 
 
-	pub fn removeCard(&mut self , card : &Card ) -> bool {
+	pub fn remove_card(&mut self , card : &Card ) -> bool {
 		let index = self.index( card );
 		match index {
 			Some( indexval ) => {
@@ -300,7 +301,7 @@ impl Cards {
 	pub fn index( &self , card : &Card ) -> Option<usize> {
 		for index in 0..self.allCards.len() {
 			let c = &(self.allCards[index]);
-			if c.getCardNum() == card.getCardNum() {
+			if c.get_card_num() == card.get_card_num() {
 				return Some( index );
 			}
 		}
@@ -312,7 +313,7 @@ impl Cards {
 		let matchIndex1 = self.findNextSequenceCard(startIndex, firstCard);
 		match matchIndex1 {
 			Some( index1 ) => {
-				let secondCard = self.getCard(index1).unwrap();
+				let secondCard = self.get_card(index1).unwrap();
 				let matchIndex2 = self.findNextSequenceCard( index1 + 1 , &secondCard);
 				match matchIndex2 {
 					Some( index2 ) => {
@@ -331,11 +332,11 @@ impl Cards {
 
 	pub fn findNextSequenceCard(&self , startIndex : usize , firstCard : &Card ) -> Option<usize> {
 		// Cards testCards = this;
-		let  firstCardNum = firstCard.getCardNum();
-		if ( firstCard.isSequenceCard() ) {
+		let  firstCardNum = firstCard.get_card_num();
+		if ( firstCard.is_sequence_card() ) {
 			for index in startIndex..self.allCards.len()  {
-				let card = self.getCard(index).unwrap();
-				if ( card.isSequenceCard() && ! card.isMark() && (card.getCardNum() == firstCardNum + 1)) {
+				let card = self.get_card(index).unwrap();
+				if ( card.is_sequence_card() && ! card.is_mark() && (card.get_card_num() == firstCardNum + 1)) {
 					return Some(index);
 				}	
 			}
@@ -343,35 +344,26 @@ impl Cards {
 		return None;
 	}
 	
-
-//	fn indexCard( v : & Vec<Card> , card : &Card ) -> Option<usize> {
-//		
-//		for index in 0..v.len() {
-//			let c = & (v[index]);
-//			if c.getCardNum() == card.getCardNum() {
-//				return Some( index );
-//			}
-//		}
-//		return None;
-//	}
 	
-
-	pub fn removeAllFlowerCards( &mut self) -> Cards  {
+	pub fn remove_all_flower_cards( &mut self) -> Cards  {
 		let mut idexes = vec![];
 		for index in 0..self.allCards.len() {
 			let c = &(self.allCards[index]);
-			if c.isFlowerCard() {
+			if c.is_flower_card() {
 				idexes.push( index );
 			}
 		}
-
+		
+		idexes.sort_by(|a, b| b.cmp(a) );
+		
         let mut result = Cards::new();        	
         for removeIdex in idexes {
-        	let removeCard = self.removeCardByIndex( removeIdex );
-        	result.addCard( removeCard );
+        	let remove_card = self.removeCardByIndex( removeIdex );
+        	result.add_card( remove_card );
         }
 		return result;
 	}
+	
 	
 }
 

@@ -16,19 +16,19 @@ impl Card {
 		Card{ cardNum : cardNum , mark : false , state : 6 }
 	}
 	 
-	pub fn isMark(&self) -> bool {
+	pub fn is_mark(&self) -> bool {
 		self.mark
 	}
 	
-	pub fn setMark(&mut self , mark : bool ) {
+	pub fn set_mark(&mut self , mark : bool ) {
 		self.mark = mark;
 	}
 	
-	pub fn getCardNum(&self ) -> u8 {
+	pub fn get_card_num(&self ) -> u8 {
 		self.cardNum
 	}
 	
-	pub fn setCardNum(&mut self , cardNum : u8 ) {
+	pub fn set_card_num(&mut self , cardNum : u8 ) {
 		self.cardNum = cardNum
 	}
 	
@@ -39,7 +39,7 @@ impl Card {
 //			return  (this.cardNum - 10)  + "索" +(  this.mark ? "*" : "" ) ;
 //		} else if (CardUtility.isCircleCard(this)) {
 //			return  (this.cardNum - 20)  + "筒" +(  this.mark ? "*" : "" ) ;
-//		} else if (CardUtility.isLetterCard(this)) {
+//		} else if (CardUtility.is_letterCard(this)) {
 //			return  LetterTitle[this.cardNum - 31]  + (  this.mark ? "*" : "" ) ;
 //		} else if (CardUtility.isFlowerCard(this)) {
 //			return   FlowerTitle[this.cardNum - 41] + (  this.mark ? "*" : "" )   ;
@@ -53,11 +53,11 @@ impl Card {
 	 * 
 	 * @param cardNums
 	 */
-	pub fn isDollarCard(&self )-> bool {
-		return  self.isDollarCardNum( self.getCardNum() );
+	pub fn is_dollar_card(&self )-> bool {
+		return  self.is_dollar_card_num( self.get_card_num() );
 	}
 
-	pub fn  isDollarCardNum(&self  ,cardNum : u8 ) -> bool{
+	pub fn  is_dollar_card_num(&self  ,cardNum : u8 ) -> bool{
 		return ( cardNum >= DOLLAR_1 && cardNum <= DOLLAR_9 );
 	}
 	
@@ -68,11 +68,11 @@ impl Card {
 	 * @param cardNum
 	 * @return
 	 */
-	pub fn  isLineCard(&self ) -> bool{
-		return self.isLineCardNum( self.cardNum );
+	pub fn  is_line_card(&self ) -> bool{
+		return self.is_line_card_num( self.cardNum );
 	}
 	
-	pub fn  isLineCardNum( &self  , cardNum : u8 ) -> bool{
+	pub fn  is_line_card_num( &self  , cardNum : u8 ) -> bool{
 		return (cardNum >= LINE_1 && cardNum <= LINE_9);
 	}
 	
@@ -83,11 +83,11 @@ impl Card {
 	 * @param cardNum
 	 * @return
 	 */
-	pub fn  isCircleCard(&self ) -> bool{
-		return self.isCircleCardNum( self.cardNum );
+	pub fn  is_circle_card(&self ) -> bool{
+		return self.is_circle_card_num( self.cardNum );
 	}
 	
-	pub fn  isCircleCardNum(&self  ,cardNum : u8 ) -> bool{
+	pub fn  is_circle_card_num(&self  ,cardNum : u8 ) -> bool{
 		return (cardNum >= CIRCLE_1 && cardNum <= CIRCLE_9 );
 	}
 	
@@ -98,86 +98,86 @@ impl Card {
 	 * @param cardNum
 	 * @return
 	 */
-	pub fn  isLetterCard(&self ) -> bool{
-		return self.isLetterCardNum(self.cardNum);
+	pub fn  is_letter_card(&self ) -> bool{
+		return self.is_letter_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum >= LETTER_EAST && cardNum <= LETTER_WHITE );
 	}
 	
 	
-	pub fn  isLetterEastCard(&self ) -> bool{
-		return self.isLetterEastCardNum(self.cardNum);
+	pub fn  is_letter_east_card(&self ) -> bool{
+		return self.is_letter_east_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterEastCardNum(&self  ,cardNum : u8 ) -> bool{
+	pub fn  is_letter_east_card_num(&self  ,cardNum : u8 ) -> bool{
 		return (cardNum == LETTER_EAST );
 	}
 	
-	pub fn  isLetterSouthCard(&self ) -> bool{
-		return self.isLetterSouthCardNum(self.cardNum);
+	pub fn  is_letter_south_card(&self ) -> bool{
+		return self.is_letter_south_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterSouthCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_south_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum == LETTER_SOUTH );
 	}
 	
 	
-	pub fn  isLetterWestCard(&self ) -> bool{
-		return self.isLetterWestCardNum(self.cardNum);
+	pub fn  is_letter_west_card(&self ) -> bool{
+		return self.is_letter_west_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterWestCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_west_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum == LETTER_WEST );
 	}
 	
 	
-	pub fn  isLetterNorthCard(&self ) -> bool{
-		return self.isLetterNorthCardNum(self.cardNum);
+	pub fn  is_letter_north_card(&self ) -> bool{
+		return self.is_letter_north_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterNorthCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_north_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum == LETTER_NORTH );
 	}
 	
 	
 	//東、南、西、北、中、發、白 : 31 ~ 37        ,每一數四張。
 	
-	pub fn  isLetterRedMidCard(&self ) -> bool{
-		return self.isLetterRedMidCardNum(self.cardNum);
+	pub fn  is_letter_red_mid_card(&self ) -> bool{
+		return self.is_letter_red_mid_card_num(self.cardNum);
 	}
 	
-	pub fn  isLetterRedMidCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_red_mid_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum == LETTER_RED_MID );
 	}
 	
 	
-	pub fn  isLetterFaCard(&self ) -> bool{
-		return self.isLetterFaCardNum( self.cardNum);
+	pub fn  is_letter_fa_card(&self ) -> bool{
+		return self.is_letter_fa_card_num( self.cardNum);
 	}
 	
-	pub fn  isLetterFaCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_fa_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum == LETTER_FA );
 	}
 	
 	
-	pub fn  isLetterWhiteCard(&self ) -> bool{
-		return self.isLetterWhiteCardNum(self.cardNum);
+	pub fn  is_letter_white_card(&self ) -> bool{
+		return self.is_letter_white_card_num(self.cardNum);
 	}
 
-	pub fn  isLetterWhiteCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_letter_white_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum ==LETTER_WHITE );
 	}
 	
 	
 	
-	pub fn  isSequenceCard(&self ) -> bool{
-		return self.isDollarCard() || self.isLineCard() || self.isCircleCard();
+	pub fn  is_sequence_card(&self ) -> bool{
+		return self.is_dollar_card() || self.is_line_card() || self.is_circle_card();
 	}
 	
-	pub fn  isSequenceCardNum(&self  ,cardNum : u8) -> bool{
-		return self.isDollarCardNum( cardNum ) || self.isLineCardNum( cardNum ) || self.isCircleCardNum( cardNum );
+	pub fn  is_sequence_card_num(&self  ,cardNum : u8) -> bool{
+		return self.is_dollar_card_num( cardNum ) || self.is_line_card_num( cardNum ) || self.is_circle_card_num( cardNum );
 	}
 	
 	
@@ -187,12 +187,12 @@ impl Card {
 	 * @param cardNum
 	 * @return
 	 */
-	pub fn  isNormalCard(&self ) -> bool{
-		return self.isSequenceCard( ) ||  self.isLetterCard();
+	pub fn  is_normal_card(&self ) -> bool{
+		return self.is_sequence_card( ) ||  self.is_letter_card();
 	}
 	
-	pub fn  isNormalCardNum(&self  ,cardNum : u8 ) -> bool{
-		return self.isSequenceCardNum( cardNum ) ||  self.isLetterCardNum( cardNum );
+	pub fn  is_normal_card_num(&self  ,cardNum : u8 ) -> bool{
+		return self.is_sequence_card_num( cardNum ) ||  self.is_letter_card_num( cardNum );
 	}
 	
 
@@ -202,11 +202,11 @@ impl Card {
 	 * @param cardNum
 	 * @return
 	 */
-	pub fn  isFlowerCard(&self ) -> bool{
-		return self.isFlowerCardNum(self.cardNum  );
+	pub fn  is_flower_card(&self ) -> bool{
+		return self.is_flower_card_num(self.cardNum  );
 	}
 
-	pub fn  isFlowerCardNum(&self  ,cardNum : u8) -> bool{
+	pub fn  is_flower_card_num(&self  ,cardNum : u8) -> bool{
 		return (cardNum >= FLOWER_ME_1 ) &&  (cardNum <= FLOWER_WINTER_4 );
 	}
 	
