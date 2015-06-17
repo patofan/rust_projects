@@ -270,7 +270,7 @@ impl Cards {
         let cards =  self.get_all_cards();
         for index in 0..cards.len() {
         	let card = &( cards[index]);
-			if ! card.is_mark() && card.get_card_num() == first_card.get_card_num() {
+			if ! card.is_mark() && card.get_card_num() == first_card.get_card_num() && index >= start_index {
 				return Some(index);
 			}	
         }
