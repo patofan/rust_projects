@@ -1,0 +1,9 @@
+[package]
+
+name = "cvtupperchar"
+version = "1.0.0"
+authors = [ "patofan@holtek.com.tw" ]
+
+[[bin]]
+
+name = "cvtupperchar"
