@@ -39,7 +39,7 @@ impl Cards {
 		self.all_cards.push( card );
 	}
 
-	pub fn  add_cards(&mut self , cards : &Cards) {
+	pub fn  add_cards(&mut self , cards : Cards) {
 		for c in cards.get_all_cards() {
 		   self.add_card_num( c.get_card_num() );
 		}
