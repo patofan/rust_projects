@@ -1,5 +1,5 @@
 
-use config::configure;
+use config::configure::*;
 use vo::cards::Cards;
 use vo::card::Card;
 
@@ -32,55 +32,55 @@ impl CardUtility {
 		}
 	}
 	
-//	
-//	fn makeEastCard() -> Card {
-//		Card::new(  LETTER_EAST  );
-//	}
-//	
-//	fn Card makeSouthCard()-> Card{
-//		return new Card( CardConfigure.LETTER_SOUTH  );
-//	}
-//	
-//	fn Card makeWestCard()-> Card{
-//		return new Card(  CardConfigure.LETTER_WEST  );
-//	}
-//	
-//	fn Card makeNorthCard()-> Card{
-//		return new Card( CardConfigure.LETTER_NORTH );
-//	}
-//	
-//	fn Card makeRedMidCard()-> Card{
-//		return new Card( CardConfigure.LETTER_RED_MID  );
-//	}
-//	
-//	fn Card makeFaCard()-> Card{
-//		return new Card( CardConfigure.LETTER_FA  );
-//	}
-//	
-//	fn Card makeWhiteCard()-> Card{
-//		return new Card( CardConfigure.LETTER_WHITE  );
-//	}
-//	
-	pub fn  make_dollar_card( dollarNum : u8 )-> Card{
-		if( dollarNum > 9 ){
+	
+	pub fn make_east_card() -> Card {
+		Card::new(  LETTER_EAST  )
+	}
+	
+	pub fn make_south_card()-> Card{
+		Card::new( LETTER_SOUTH  )
+	}
+	
+	pub fn make_west_card()-> Card{
+		Card::new( LETTER_WEST  )
+	}
+	
+	pub fn make_north_card()-> Card{
+		Card::new( LETTER_NORTH )
+	}
+	
+	pub fn make_red_mid_card()-> Card{
+		Card::new(LETTER_RED_MID  )
+	}
+	
+	pub fn make_fa_card()-> Card{
+		Card::new(LETTER_FA  )
+	}
+	
+	pub fn make_white_card()-> Card{
+		Card::new(LETTER_WHITE  )
+	}
+	
+	pub fn make_dollar_card( dollar_num : u8 )-> Card{
+		if dollar_num > 9 {
 			panic!( "Make line card must be <= 9");
 		}	
-		return Card::new( dollarNum  );
+		return Card::new( dollar_num  );
 	}
 	
 	
-	pub fn  make_line_card(  lineNum: u8 )-> Card{
-		if( lineNum > 9 ) {
+	pub fn  make_line_card(  line_num: u8 )-> Card{
+		if line_num > 9  {
 			panic!( "Make line card must be <= 9");
 		}	
-		return Card::new(  10 +   lineNum  );
+		return Card::new(  10 +   line_num  );
 	}
 	
-	pub fn  make_circle_card( circleNum: u8 )-> Card{
-		if( circleNum > 9 ) {
+	pub fn  make_circle_card( circle_num: u8 )-> Card{
+		if circle_num > 9  {
 			panic!( "Make circle card must be <= 9");
 		}	
-		return Card::new( 20 +   circleNum );
+		return Card::new( 20 +   circle_num );
 	}
 //	
 //
