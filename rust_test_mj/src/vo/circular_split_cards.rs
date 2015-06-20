@@ -41,7 +41,7 @@ impl CircularSplitCards {
 		
 	}
 	
-    pub fn do_final_reset_head_tail(&mut self , skip : usize ) {
+    pub fn reset_head_tail(&mut self , skip : usize ) {
     	let mut cards :Cards;
     	for _ in 0..skip {
     		cards = self.vecs.remove(0); 
@@ -50,7 +50,7 @@ impl CircularSplitCards {
 	}
 	
 	
-	pub fn do_final_reset_head_tail_by_wnd_skip(&mut self , wnd :u8 ,  skip : usize) {
+	pub fn reset_head_tail_by_wnd_skip(&mut self , wnd :u8 ,  skip : usize) {
 		let mut total_skip = 0;
 		if wnd == LETTER_EAST {
 			total_skip = skip; 
@@ -61,7 +61,7 @@ impl CircularSplitCards {
 		}else if wnd == LETTER_NORTH  {
 			total_skip =  18 * 1 +  skip;
 		}
-		self.do_final_reset_head_tail(total_skip); 
+		self.reset_head_tail(total_skip); 
 	}	
 	
 	pub fn pull_card_from_head(&mut self , card_count : usize ) -> Cards {
